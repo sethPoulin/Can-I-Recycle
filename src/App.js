@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import firebase from './firebase';
 // import possibleCats from './Search'
+import setNewMessage from './SetNewMessage'
 import './App.scss';
+
 
 
 
@@ -47,14 +49,14 @@ class App extends Component {
   handleChange = (event) => {
     this.setState({
       userChoice: event.target.value,
-      message: ''
+      // message: ''
     })
   }
   
-  cleanMessage = (mes) => {  
-    const cleanMessage = mes.replace(/[&|;]+[a-z0-9]+[&|;]/g, "");
-    return cleanMessage;
-  }
+  // cleanMessage = (mes) => {  
+  //   const cleanMessage = mes.replace(/[&|;]+[a-z0-9]+[&|;]/g, "");
+  //   return cleanMessage;
+  // }
 
   handleSubmit = (e) => {
       e.preventDefault();
@@ -70,21 +72,60 @@ class App extends Component {
       //take the value(option) you were passed and check to see which object's 'keyword' key contains it.  Store that object's category in a variable recycleCat. 
       // Run getMessage(recycleCat):
       //getMessage = if recycleCat = garbage  
-  }
+    }
+    
+  checkCategories = () => {
+    console.log('check categories is run')
+    // fullObject[0].category.reduce((a,b) => {
+      //   if (!a.includes(b)){
+        //     a + b
+        //   }
+        // })
+      }
+        
+  // checkCategories();
+  
+  // setNewMessage = (category) => {
+  //   let newMessage = '';
+  //   if(category === 'Garbage'){
+  //     newMessage = 'the item is garbage'
+  //   } 
+  //   else if(category === 'Blue Bin') {
+  //     newMessage = 'the item goes in your blue bin'
+  //   } else if(category === 'HHW'){
+  //     newMessage = 'the item is household hazardous waste'
+  //   } else if (category === 'Not Accepted'){
+  //     newMessage = 'the item cannot be recycled at home or any other facility'
+  //   } else if (category === 'Metal Items'){
+  //     newMessage = 'the item must be dropped off at a metal recycling facility'
+  //   }
+
+  //   this.setState({
+  //     message:newMessage
+  //   })
+  //   // console.log('checkRecMethod was run and the object passed to it is"',this.state.fullObject[0][1].keywords);
+  // }
 
   checkRecMethod = () => {
     const returnedRecycleMethod = 
     this.state.fullObject[0].filter((item)=>{
       return item.keywords.includes(this.state.userChoice)
     })
+    const newMessageToPrint = setNewMessage(returnedRecycleMethod[0].category)
+    this.setState({
+      message: newMessageToPrint
+    })
+
+    // setNewMessage(returnedRecycleMethod)
     // this.state.fullObject[0].map((item) => {
     //   console.log(item.keywords.includes(this.state.userChoice));
     // })
     // console.log(this.state.fullObject[0][2].keywords.includes(this.state.userChoice));
 
-    console.log(returnedRecycleMethod[0].category);
-    // console.log('checkRecMethod was run and the object passed to it is"',this.state.fullObject[0][1].keywords);
+    console.log(returnedRecycleMethod[0].category); 
   }
+
+
 
   render(){
     //Me: PUT CONDITIONAL IN YOUR RENDER.  IF X RETURN (STUFF) ELSE RETURN (OTHER STUFF)
