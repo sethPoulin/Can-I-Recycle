@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import firebase from './firebase';
 // import possibleCats from './Search'
 import setNewMessage from './SetNewMessage'
+import Form from './Form'
 import './App.scss';
 //to refactor into components:
 //1. within the render of the main App, decide which elements are simply rendering something to the page and which are actually running functions.  The ones running functions are the ones that could be broken out into child components.
@@ -50,19 +51,14 @@ class App extends Component {
   } 
 
   
-
-  handleChange = (event) => {
-    this.setState({
-      userChoice: event.target.value,
-      // message: ''
-    })
-  }
+ 
   
   // cleanMessage = (mes) => {  
   //   const cleanMessage = mes.replace(/[&|;]+[a-z0-9]+[&|;]/g, "");
   //   return cleanMessage;
   // }
 
+  //runs checkMethod if userChoice isn't null
   handleSubmit = (e) => {
       e.preventDefault();
       if (this.state.userChoice === ''){
@@ -111,12 +107,15 @@ class App extends Component {
   //   // console.log('checkRecMethod was run and the object passed to it is"',this.state.fullObject[0][1].keywords);
   // }
 
+  //goes through every object in the fullObject array and returns only the item that contains the userChoice. 
   checkRecMethod = () => {
     const returnedRecycleMethod = 
     this.state.fullObject[0].filter((item)=>{
       return item.keywords.includes(this.state.userChoice)
     })
+    //runs setNewMessage to determine which message to print based on the value of the returned item's 'category' key.  Stores this in variable newMessageToPrint
     const newMessageToPrint = setNewMessage(returnedRecycleMethod[0].category)
+    //sets state.message to newMessageToPrint
     this.setState({
       message: newMessageToPrint
     })
@@ -142,19 +141,22 @@ class App extends Component {
         <h1>Welcome to the recycling helper!</h1>
         <h3>This app will help you determine which items are recyclable in the Greater Toronto Area</h3>
         <h3>To begin, select the item you'd like to recycle from the list below</h3>
+        
+        <Form handleSubmit={this.handleSubmit} />
         {/* <h3>The userChoice is: {this.state.userChoice}</h3> */}
         {/* <h3>The message is: {this.cleanMessage(this.state.message)}</h3> */}
-        <form action="">
+        {/* <form action="">
+        
           <label htmlFor="selectItem">I want to recycle:  </label>
-          <select name="wasteItem" id="selectItem" value={this.state.value} onChange={this.handleChange}>
+          <select name="wasteItem" id="selectItem" value={this.state.value} onChange={this.handleChange}> */}
             {/* when user changes value of the select field, run handleChange function which sets state.userChoice to select's value */}
-            <option value="metal lids">metal lids</option>
+            {/* <option value="metal lids">metal lids</option>
             <option value="black plastic">black plastic</option>
             <option value="glass bottle">glass bottle</option>
           </select>
           
           <button onClick={this.handleSubmit}>Check if it's recyclable!</button>
-        </form>
+        </form> */}
         <p className="message">{this.state.message}</p>
       </div>
     )
