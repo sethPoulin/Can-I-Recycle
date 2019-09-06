@@ -55,12 +55,13 @@ class App extends Component {
   }
 
   handleSubmit = (e) => {
-      // e.preventDefault();
+      e.preventDefault();
       //if this.state.userChoice === '', return some error message.
       // if (this.state.message === ''){
         console.log('submit was clicked');
       // }
       // console.log(e);
+      //run the function on this.state.userChoice;
       //take the value(option) you were passed and check to see which object's 'keyword' key contains it.  Store that object's category in a variable recycleCat. 
       // Run getMessage(recycleCat):
       //getMessage = if recycleCat = garbage  
@@ -87,7 +88,7 @@ class App extends Component {
                 <option value="glass bottle">glass bottle</option>
               </select>
               
-              <button onClick={this.handleSubmit(this.state.userChoice)}>Check if it's recyclable!</button>
+              <button onClick={this.handleSubmit}>Check if it's recyclable!</button>
             </form>
             {/* <h2>{textTest}</h2> */}
             {/* <ul>
