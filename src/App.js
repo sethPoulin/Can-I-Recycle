@@ -3,7 +3,12 @@ import firebase from './firebase';
 // import possibleCats from './Search'
 import setNewMessage from './SetNewMessage'
 import './App.scss';
-
+//to refactor into components:
+//1. within the render of the main App, decide which elements are simply rendering something to the page and which are actually running functions.  The ones running functions are the ones that could be broken out into child components.
+//2.  if a child component needs to trigger a change in parent's state, put the function that changes the state in the PARENT and pass it to the child as a prop.  The child component will trigger the PARENT to run the function with an argument that the child supplies, and the PARENT will then be able to update its own state because it's the one running the function.  
+// Say the component is called SearchBar.  In your App's render you would have <Searchbar handleClick={this.handleClick}/> and as part of the component Searchbar's render you would have, say <button onClick={this.props.handleClick(this.state.someKey)}></button> This will call the function handleClick IN THE PARENT, using this.state.someKey (this refers to the CHILD component's state!) passed in as an argument.  
+//See this reference on stack overflow: https://stackoverflow.com/questions/48407785/react-pass-function-to-child-component
+//Note that when we write <Searchbar handleClick={this.handleClick}/> we are passing the function via props to the entire component.  The handleClick function can then be called from anywhere in the Searchbar component.
 
 
 
@@ -151,116 +156,11 @@ class App extends Component {
           <button onClick={this.handleSubmit}>Check if it's recyclable!</button>
         </form>
         <p className="message">{this.state.message}</p>
-        {/* <h2>{textTest}</h2> */}
-        {/* <ul>
-          {this.state.books.map((book, i) => {
-            return (
-            <li key={i}>
-              <p>{book.title}</p>
-              <button onClick= {() =>{this.removeBook(i)}}>Remove book</button>
-            </li>
-
-            );
-          })}
-        </ul> */}
       </div>
     )
   }
 }     
 
-			// new empty array that will be used to update our books state
-			// an array is important here because our intial state of "books" is an empty array
-			// array data is easy to map over
-// 			const newState = [];
 
-// 			// loop over our response variable that is an object of firebase data
-// 			// for every property (or key) in our object push both the book title and the firebase-
-//       // generated key as values in an object to the newState array
-//       //Me: this is grabbing the data from Firebase and updating our state.  This runs as soon as the page loads.
-			
-// 			newState.push({
-//           category: response[category],
-//           uniqueKey: key
-// 				});
-// 			}
-
-// 			// update state with the newState array
-// 			this.setState({
-// 				books: newState,
-// 			});
-// 		});
-// 	}
-
-//     // custom function to update state
-//     //Me: we are defining all the functions that we'll use in the app, but are not calling them.  The button clicks are what call the functions.
-    
-// 	handleChange = event => {
-// 		// the event object gives us access to the html element (target) that was changed
-//         // and returns us the value of the html element
-//         //Me: this is not running yet.  This is just the creation of the function that will be called WHEN the user clicks on a button (button click will call handleChange)
-// 		this.setState({
-// 			userInput: event.target.value,
-// 		});
-// 	};
-
-// 	// custom functiom to add new item to firebase and update state
-// 	handleSubmit = event => {
-// 		event.preventDefault();
-
-// 		const dbRef = firebase.database().ref();
-
-// 		// firebase .push() method lets us pice whatever value is stored in state at the time
-// 		// the handleSubmit method is fired
-// 		dbRef.push(this.state.userInput);
-
-// 		// reset our input field back to empty
-// 		this.setState({
-// 			userInput: "",
-// 		});
-// 	};
-
-// 	// custom function to remove an item from firebase
-// 	// this function takes an argument, which is the ID of the book we want to remove
-// 	removeBook = bookId => {
-// 		const dbRef = firebase.database().ref();
-
-// 		// using the Firebase methods .child(). & remove(), we remove the node specific to the book ID
-// 		dbRef.child(bookId).remove();
-// 	};
-
-// 	render() {
-// 		return (
-// 			<div className="App">
-// 				<h1>Bookshelf App!</h1>
-
-// 				<form action="">
-// 					<input
-// 						type="text"
-// 						name="userInput"
-// 						// The onchange event occurs when the value of an element has been changed
-// 						onChange={this.handleChange}
-// 						// binding or controlling inputs requires us to make sure react state is being tracked everywhere
-// 						value={this.state.userInput}
-// 					/>
-// 					<button onClick={this.handleSubmit}>Add New Book</button>
-// 				</form>
-// 				<ul>
-// 					{this.state.books.map(book => {
-// 						return (
-// 							<li>
-// 								<p>{book.title}</p>
-// 								{/* we are passing a reference to a function rather than calling a function. This way,
-//                 the function won't fire immediately and delete all our books */}
-// 								<button onClick={() => this.removeBook(book.uniqueKey)}>
-// 									Remove Book
-// 								</button>
-// 							</li>
-// 						);
-// 					})}
-// 				</ul>
-// 			</div>
-// 		);
-// 	}
-// }
 
 export default App;
