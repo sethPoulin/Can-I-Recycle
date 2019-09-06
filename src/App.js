@@ -13,7 +13,8 @@ class App extends Component {
     this.state = {
       userChoice: '',
       message: '',
-      keywords: []
+      keywords: [],
+      fullObject:[]
     }
 
   }
@@ -45,7 +46,8 @@ class App extends Component {
 
   handleChange = (event) => {
     this.setState({
-      userChoice: event.target.value
+      userChoice: event.target.value,
+      message: ''
     })
   }
   
@@ -56,61 +58,73 @@ class App extends Component {
 
   handleSubmit = (e) => {
       e.preventDefault();
-      //if this.state.userChoice === '', return some error message.
-      // if (this.state.message === ''){
-        console.log('submit was clicked');
-      // }
-      // console.log(e);
+      if (this.state.userChoice === ''){
+        this.setState({
+          message: 'Please select an item from the list first'
+        })
+      } else {
+        this.checkRecMethod()
+      }
+     
       //run the function on this.state.userChoice;
       //take the value(option) you were passed and check to see which object's 'keyword' key contains it.  Store that object's category in a variable recycleCat. 
       // Run getMessage(recycleCat):
       //getMessage = if recycleCat = garbage  
   }
 
+  checkRecMethod = () => {
+    const returnedRecycleMethod = 
+    this.state.fullObject[0].filter((item)=>{
+      return item.keywords.includes(this.state.userChoice)
+    })
+    // this.state.fullObject[0].map((item) => {
+    //   console.log(item.keywords.includes(this.state.userChoice));
+    // })
+    // console.log(this.state.fullObject[0][2].keywords.includes(this.state.userChoice));
+
+    console.log(returnedRecycleMethod[0].category);
+    // console.log('checkRecMethod was run and the object passed to it is"',this.state.fullObject[0][1].keywords);
+  }
+
   render(){
     //Me: PUT CONDITIONAL IN YOUR RENDER.  IF X RETURN (STUFF) ELSE RETURN (OTHER STUFF)
 
     
-    if (this.state.userChoice === ''){
-      return (
-        <div className="App">
-            <h1>Welcome to the recycling helper!</h1>
-            <h3>This app will help you determine which items are recyclable in the Greater Toronto Area</h3>
-            <h3>To begin, select the item you'd like to recycle from the list below</h3>
-            {/* <h3>The userChoice is: {this.state.userChoice}</h3> */}
-            {/* <h3>The message is: {this.cleanMessage(this.state.message)}</h3> */}
-            <form action="">
-              <label htmlFor="selectItem">I want to recycle:  </label>
-              <select name="wasteItem" id="selectItem" value={this.state.value} onChange={this.handleChange}>
-                {/* when user changes value of the select field, run handleChange function which sets state.userChoice to select's value */}
-                <option value="cardboard">cardboard</option>
-                <option value="black plastic">black plastic</option>
-                <option value="glass bottle">glass bottle</option>
-              </select>
-              
-              <button onClick={this.handleSubmit}>Check if it's recyclable!</button>
-            </form>
-            {/* <h2>{textTest}</h2> */}
-            {/* <ul>
-              {this.state.books.map((book, i) => {
-                return (
-                <li key={i}>
-                  <p>{book.title}</p>
-                  <button onClick= {() =>{this.removeBook(i)}}>Remove book</button>
-                </li>
+   
+    return (
+      <div className="App">
+        <h1>Welcome to the recycling helper!</h1>
+        <h3>This app will help you determine which items are recyclable in the Greater Toronto Area</h3>
+        <h3>To begin, select the item you'd like to recycle from the list below</h3>
+        {/* <h3>The userChoice is: {this.state.userChoice}</h3> */}
+        {/* <h3>The message is: {this.cleanMessage(this.state.message)}</h3> */}
+        <form action="">
+          <label htmlFor="selectItem">I want to recycle:  </label>
+          <select name="wasteItem" id="selectItem" value={this.state.value} onChange={this.handleChange}>
+            {/* when user changes value of the select field, run handleChange function which sets state.userChoice to select's value */}
+            <option value="metal lids">metal lids</option>
+            <option value="black plastic">black plastic</option>
+            <option value="glass bottle">glass bottle</option>
+          </select>
+          
+          <button onClick={this.handleSubmit}>Check if it's recyclable!</button>
+        </form>
+        <p className="message">{this.state.message}</p>
+        {/* <h2>{textTest}</h2> */}
+        {/* <ul>
+          {this.state.books.map((book, i) => {
+            return (
+            <li key={i}>
+              <p>{book.title}</p>
+              <button onClick= {() =>{this.removeBook(i)}}>Remove book</button>
+            </li>
 
-                );
-              })}
-            </ul> */}
-        </div>
-  );} else {
-    return(
-      <h1>The selction is not empty!</h1>
+            );
+          })}
+        </ul> */}
+      </div>
     )
-        
   }
-}
-
 }     
 
 			// new empty array that will be used to update our books state
