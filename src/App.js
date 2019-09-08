@@ -3,6 +3,7 @@ import firebase from './firebase';
 // import possibleCats from './Search'
 import setNewMessage from './SetNewMessage'
 import Form from './Form'
+import removeDups from './removeDups'
 import './App.scss';
 //to refactor into components:
 //1. within the render of the main App, decide which elements are simply rendering something to the page and which are actually running functions.  The ones running functions are the ones that could be broken out into child components.
@@ -26,7 +27,7 @@ class App extends Component {
     }
 
   }
-
+  
  
 
   // lifecycle method for when the component is finshed mounting
@@ -48,32 +49,51 @@ class App extends Component {
       })
       // console.log(this.state.fullObject);
     }) 
+
+    // const allGarbageWithDups = []
+    // this.state.fullObject[0].map(function(item){
+    //   this.push(item.keywords)
+    // })
+    // console.log(allGarbageWithDups)
+    
   } 
+
+
+  getGarbage = (arr) => {
+    const allGarbage = []
+    arr.forEach(function(item){
+      //let splitItems = item.keywords.split(,)
+      allGarbage.push(item.keywords)
+      
+    })
+    console.log(allGarbage)
+
+    // return allgarbage once it's done 🤷‍♀️
+  }
+
+  
+
+
 
   
  
   
-  // cleanMessage = (mes) => {  
-  //   const cleanMessage = mes.replace(/[&|;]+[a-z0-9]+[&|;]/g, "");
-  //   return cleanMessage;
-  // }
+  cleanMessage = (mes) => {  
+    const cleanMessage = mes.replace(/[&|;]+[a-z0-9]+[&|;]/g, "");
+    return cleanMessage;
+  }
 
   //runs checkMethod if userChoice isn't null
-  handleSubmit = (e) => {
-      e.preventDefault();
-      if (this.state.userChoice === ''){
-        this.setState({
-          message: 'Please select an item from the list first'
-        })
-      } else {
-        this.checkRecMethod()
+  handleSubmit = (userChoice) => {
+      // e.preventDefault();
+      this.checkRecMethod(userChoice)
       }
      
       //run the function on this.state.userChoice;
       //take the value(option) you were passed and check to see which object's 'keyword' key contains it.  Store that object's category in a variable recycleCat. 
       // Run getMessage(recycleCat):
       //getMessage = if recycleCat = garbage  
-    }
+
     
   checkCategories = () => {
     console.log('check categories is run')
@@ -82,7 +102,14 @@ class App extends Component {
         //     a + b
         //   }
         // })
-      }
+  }
+
+  resetMessage = () => {
+    this.setState({
+      message: ''
+    })
+  }
+
         
   // checkCategories();
   
@@ -108,10 +135,10 @@ class App extends Component {
   // }
 
   //goes through every object in the fullObject array and returns only the item that contains the userChoice. 
-  checkRecMethod = () => {
+  checkRecMethod = (userChoice) => {
     const returnedRecycleMethod = 
-    this.state.fullObject[0].filter((item)=>{
-      return item.keywords.includes(this.state.userChoice)
+    this.state.fullObject[0].filter((garbageItem)=>{
+      return garbageItem.keywords.includes(userChoice)
     })
     //runs setNewMessage to determine which message to print based on the value of the returned item's 'category' key.  Stores this in variable newMessageToPrint
     const newMessageToPrint = setNewMessage(returnedRecycleMethod[0].category)
@@ -129,6 +156,20 @@ class App extends Component {
     console.log(returnedRecycleMethod[0].category); 
   }
 
+   //changes state.userChoice when user selects an item from drop down list
+   handleChange = (event) => {
+    this.setState({
+      userChoice: event.target.value,
+      message: ''
+        })
+    }
+
+  errorMessage = () => {
+    this.setState({
+      message: ''
+    })
+  }
+
 
 
   render(){
@@ -142,7 +183,7 @@ class App extends Component {
         <h3>This app will help you determine which items are recyclable in the Greater Toronto Area</h3>
         <h3>To begin, select the item you'd like to recycle from the list below</h3>
         
-        <Form handleSubmit={this.handleSubmit} />
+        <Form fullObject={this.state.fullObject} handleSubmit={this.handleSubmit} resetMessage={this.resetMessage} handleChange={this.handleChange} userChoice={this.state.userChoice} errrorMessage={this.errorMessage} />
         {/* <h3>The userChoice is: {this.state.userChoice}</h3> */}
         {/* <h3>The message is: {this.cleanMessage(this.state.message)}</h3> */}
         {/* <form action="">
@@ -161,7 +202,8 @@ class App extends Component {
       </div>
     )
   }
-}     
+}
+     
 
 
 
