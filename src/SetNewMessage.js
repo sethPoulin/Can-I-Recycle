@@ -2,21 +2,26 @@
 // import firebase from './firebase';
 
 function setNewMessage(category){
-    let newMessage = '';
+    const newMessage = {
+      message: '',
+      image: ''
+    };
     if(category === 'Garbage'){
-      newMessage = 'the item is garbage'
+      newMessage.message = 'the item is garbage'
+      newMessage.image = 'trashCan.png'
     } 
     else if(category === 'Blue Bin') {
-      newMessage = 'the item goes in your blue bin'
+      newMessage.message = 'the item goes in your blue bin'
     } else if(category === 'HHW'){
-      newMessage = 'the item is household hazardous waste'
+      newMessage.message = 'the item is household hazardous waste'
     } else if (category === 'Not Accepted'){
-      newMessage = 'the item cannot be recycled at home or any other facility'
+      newMessage.message = 'the item cannot be recycled at home or any other facility'
     } else if (category === 'Metal Items'){
-      newMessage = 'the item must be dropped off at a metal recycling facility'
+      newMessage.message = 'the item must be dropped off at a metal recycling facility'
     }
 
     return newMessage
+    // return image
 
     // this.setState({
     //   message:newMessage

@@ -3,14 +3,14 @@ import firebase from './firebase';
 // import possibleCats from './Search'
 import setNewMessage from './SetNewMessage'
 import Form from './Form'
-import removeDups from './removeDups'
+// import removeDups from './removeDups'
 import './App.scss';
 //to refactor into components:
 //1. within the render of the main App, decide which elements are simply rendering something to the page and which are actually running functions.  The ones running functions are the ones that could be broken out into child components.
 //2.  if a child component needs to trigger a change in parent's state, put the function that changes the state in the PARENT and pass it to the child as a prop.  The child component will trigger the PARENT to run the function with an argument that the child supplies, and the PARENT will then be able to update its own state because it's the one running the function.  
 // Say the component is called SearchBar.  In your App's render you would have <Searchbar handleClick={this.handleClick}/> and as part of the component Searchbar's render you would have, say <button onClick={this.props.handleClick(this.state.someKey)}></button> This will call the function handleClick IN THE PARENT, using this.state.someKey (this refers to the CHILD component's state!) passed in as an argument.  
 //See this reference on stack overflow: https://stackoverflow.com/questions/48407785/react-pass-function-to-child-component
-//Note that when we write <Searchbar handleClick={this.handleClick}/> we are passing the function via props to the entire component.  The handleClick function can then be called from anywhere in the Searchbar component.
+//Note that when we write <Searchbar handleClick={this.handleClick}/> we are passing the function via props to the entire component.  The handleClick function can then be called from anywhere in the Searchbar component's render.
 
 
 
@@ -23,7 +23,8 @@ class App extends Component {
       userChoice: '',
       message: '',
       keywords: [],
-      fullObject:[]
+      fullObject:[],
+      image: ''
     }
 
   }
@@ -144,7 +145,8 @@ class App extends Component {
     const newMessageToPrint = setNewMessage(returnedRecycleMethod[0].category)
     //sets state.message to newMessageToPrint
     this.setState({
-      message: newMessageToPrint
+      message: newMessageToPrint.message,
+      image: newMessageToPrint.image
     })
 
     // setNewMessage(returnedRecycleMethod)
@@ -178,7 +180,7 @@ class App extends Component {
     
    
     return (
-      <div className="App">
+      <div>
         <h1>Welcome to the recycling helper!</h1>
         <h3>This app will help you determine which items are recyclable in the Greater Toronto Area</h3>
         <h3>To begin, select the item you'd like to recycle from the list below</h3>
@@ -199,6 +201,7 @@ class App extends Component {
           <button onClick={this.handleSubmit}>Check if it's recyclable!</button>
         </form> */}
         <p className="message">{this.state.message}</p>
+        <img src={this.state.image} alt={this.state.image}/>
       </div>
     )
   }
