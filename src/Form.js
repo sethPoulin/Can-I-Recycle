@@ -33,7 +33,8 @@ class Form extends Component {
                 </select>
                 
                 <button onClick={(e)=>{
-                e.preventDefault(e)   
+                e.preventDefault(e) 
+                    
                     if (this.state.userChoice === ''){
 
                         this.setState({

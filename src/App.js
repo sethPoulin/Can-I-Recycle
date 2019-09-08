@@ -3,6 +3,7 @@ import firebase from './firebase';
 // import possibleCats from './Search'
 import setNewMessage from './SetNewMessage'
 import Form from './Form'
+import trashCan from './assets/trashCan.png'
 // import removeDups from './removeDups'
 import './App.scss';
 //to refactor into components:
@@ -24,8 +25,11 @@ class App extends Component {
       message: '',
       keywords: [],
       fullObject:[],
-      image: ''
+      image: '',
+      alt:''
     }
+
+    this.getGarbage = this.getGarbage.bind(this)
 
   }
   
@@ -60,17 +64,7 @@ class App extends Component {
   } 
 
 
-  getGarbage = (arr) => {
-    const allGarbage = []
-    arr.forEach(function(item){
-      //let splitItems = item.keywords.split(,)
-      allGarbage.push(item.keywords)
-      
-    })
-    console.log(allGarbage)
-
-    // return allgarbage once it's done 🤷‍♀️
-  }
+  
 
   
 
@@ -109,6 +103,19 @@ class App extends Component {
     this.setState({
       message: ''
     })
+  }
+
+  getGarbage (arr) {
+    const allGarbage = []
+    arr.forEach(function(item){
+      console.log('yay')
+      // let splitItems = item.keywords.split(',')
+      // allGarbage.push(splitItems)
+      
+    })
+    // console.log('allGarbage')
+
+    // return allgarbage once it's done 🤷‍♀️
   }
 
         
@@ -176,16 +183,21 @@ class App extends Component {
 
   render(){
     //Me: PUT CONDITIONAL IN YOUR RENDER.  IF X RETURN (STUFF) ELSE RETURN (OTHER STUFF)
-
-    
+    this.getGarbage(this.state.fullObject);
+   console.log(this.state.fullObject[0])
+    // console.log(newAllGarbage)
    
     return (
+
       <div>
-        <h1>Welcome to the recycling helper!</h1>
-        <h3>This app will help you determine which items are recyclable in the Greater Toronto Area</h3>
-        <h3>To begin, select the item you'd like to recycle from the list below</h3>
+        {/* {this.getGarbage()} */}
+        <header>
+          <h1>Can-</h1>
+          <h3>This app will help you determine which items are recyclable in the Greater Toronto Area</h3>
+          <h3>To begin, select the item you'd like to recycle from the list below</h3>
+        </header>
         
-        <Form fullObject={this.state.fullObject} handleSubmit={this.handleSubmit} resetMessage={this.resetMessage} handleChange={this.handleChange} userChoice={this.state.userChoice} errrorMessage={this.errorMessage} />
+        <Form fullObject={this.state.fullObject} handleSubmit={this.getGarbage} resetMessage={this.resetMessage} handleChange={this.handleChange} userChoice={this.state.userChoice} errrorMessage={this.errorMessage} />
         {/* <h3>The userChoice is: {this.state.userChoice}</h3> */}
         {/* <h3>The message is: {this.cleanMessage(this.state.message)}</h3> */}
         {/* <form action="">
@@ -200,8 +212,12 @@ class App extends Component {
           
           <button onClick={this.handleSubmit}>Check if it's recyclable!</button>
         </form> */}
-        <p className="message">{this.state.message}</p>
-        <img src={this.state.image} alt={this.state.image}/>
+        <section className="message">
+          <ul><li>{this.state.message}</li></ul>
+        </section>
+        <img src={this.state.image} 
+        alt={this.state.alt}
+        />
       </div>
     )
   }
