@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import firebase from './firebase';
 // import possibleCats from './Search'
-import setNewMessage from './SetNewMessage'
+
 import Form from './Form'
 import trashCan from './assets/trashCan.png'
 // import removeDups from './removeDups'
@@ -22,18 +22,10 @@ class App extends Component {
 
     this.state = {
       userChoice: '',
-      message: '',
       keywords: [],
-      fullObject:[],
-      image: '',
-      alt:''
+      fullObject:[]
     }
-
-    this.getGarbage = this.getGarbage.bind(this)
-
   }
-  
- 
 
   // lifecycle method for when the component is finshed mounting
 	componentDidMount() {
@@ -50,17 +42,10 @@ class App extends Component {
       const response = data.val();
       //loads the full JSON array into state so it can be accessed by other functions
       this.setState({
-        fullObject: [response]
+        fullObject: response
       })
       // console.log(this.state.fullObject);
     }) 
-
-    // const allGarbageWithDups = []
-    // this.state.fullObject[0].map(function(item){
-    //   this.push(item.keywords)
-    // })
-    // console.log(allGarbageWithDups)
-    
   } 
 
 
@@ -78,45 +63,21 @@ class App extends Component {
     return cleanMessage;
   }
 
-  //runs checkMethod if userChoice isn't null
-  handleSubmit = (userChoice) => {
-      // e.preventDefault();
-      this.checkRecMethod(userChoice)
-      }
+  
+
+  // getGarbage = (arr) => {
+  //   const allGarbage = []
+  //   arr.forEach(function(item){
+  //     let splitItems = item.keywords.split(',')
+  //     splitItems.forEach((item)=>{
+  //       allGarbage.push(item)
+  //     })
      
-      //run the function on this.state.userChoice;
-      //take the value(option) you were passed and check to see which object's 'keyword' key contains it.  Store that object's category in a variable recycleCat. 
-      // Run getMessage(recycleCat):
-      //getMessage = if recycleCat = garbage  
+  //   })
+  //   return allGarbage
 
-    
-  checkCategories = () => {
-    console.log('check categories is run')
-    // fullObject[0].category.reduce((a,b) => {
-      //   if (!a.includes(b)){
-        //     a + b
-        //   }
-        // })
-  }
-
-  resetMessage = () => {
-    this.setState({
-      message: ''
-    })
-  }
-
-  getGarbage (arr) {
-    const allGarbage = []
-    arr.forEach(function(item){
-      console.log('yay')
-      // let splitItems = item.keywords.split(',')
-      // allGarbage.push(splitItems)
-      
-    })
-    // console.log('allGarbage')
-
-    // return allgarbage once it's done 🤷‍♀️
-  }
+  //   // return allgarbage once it's done 🤷‍♀️
+  // }
 
         
   // checkCategories();
@@ -143,18 +104,7 @@ class App extends Component {
   // }
 
   //goes through every object in the fullObject array and returns only the item that contains the userChoice. 
-  checkRecMethod = (userChoice) => {
-    const returnedRecycleMethod = 
-    this.state.fullObject[0].filter((garbageItem)=>{
-      return garbageItem.keywords.includes(userChoice)
-    })
-    //runs setNewMessage to determine which message to print based on the value of the returned item's 'category' key.  Stores this in variable newMessageToPrint
-    const newMessageToPrint = setNewMessage(returnedRecycleMethod[0].category)
-    //sets state.message to newMessageToPrint
-    this.setState({
-      message: newMessageToPrint.message,
-      image: newMessageToPrint.image
-    })
+  
 
     // setNewMessage(returnedRecycleMethod)
     // this.state.fullObject[0].map((item) => {
@@ -162,29 +112,32 @@ class App extends Component {
     // })
     // console.log(this.state.fullObject[0][2].keywords.includes(this.state.userChoice));
 
-    console.log(returnedRecycleMethod[0].category); 
-  }
+
+  
 
    //changes state.userChoice when user selects an item from drop down list
-   handleChange = (event) => {
-    this.setState({
-      userChoice: event.target.value,
-      message: ''
-        })
-    }
+  //  handleChange = (event) => {
+  //   this.setState({
+  //     userChoice: event.target.value,
+  //     message: ''
+  //       })
+  //   }
 
-  errorMessage = () => {
-    this.setState({
-      message: ''
-    })
-  }
+  // errorMessage = () => {
+  //   this.setState({
+  //     message: ''
+  //   })
+  // }
 
 
 
   render(){
     //Me: PUT CONDITIONAL IN YOUR RENDER.  IF X RETURN (STUFF) ELSE RETURN (OTHER STUFF)
-    this.getGarbage(this.state.fullObject);
-   console.log(this.state.fullObject[0])
+    // if (this.state.fullObject) {
+    //   console.log(this.getGarbage(this.state.fullObject));
+    // }
+    
+  //  console.log(this.state.fullObject)
     // console.log(newAllGarbage)
    
     return (
@@ -196,8 +149,7 @@ class App extends Component {
           <h3>This app will help you determine which items are recyclable in the Greater Toronto Area</h3>
           <h3>To begin, select the item you'd like to recycle from the list below</h3>
         </header>
-        
-        <Form fullObject={this.state.fullObject} handleSubmit={this.getGarbage} resetMessage={this.resetMessage} handleChange={this.handleChange} userChoice={this.state.userChoice} errrorMessage={this.errorMessage} />
+        <Form fullObject={this.state.fullObject}  userChoice={this.state.userChoice}  />
         {/* <h3>The userChoice is: {this.state.userChoice}</h3> */}
         {/* <h3>The message is: {this.cleanMessage(this.state.message)}</h3> */}
         {/* <form action="">
@@ -213,10 +165,10 @@ class App extends Component {
           <button onClick={this.handleSubmit}>Check if it's recyclable!</button>
         </form> */}
         <section className="message">
-          <ul><li>{this.state.message}</li></ul>
+          {/* <ul><li>{this.state.message}</li></ul> */}
         </section>
-        <img src={this.state.image} 
-        alt={this.state.alt}
+        {/* <img src={this.state.image}  */}
+        {/* alt={this.state.alt} */}
         />
       </div>
     )
