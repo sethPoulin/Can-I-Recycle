@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import trashCan from './assets/trashCan.png'
+// import trashCan from './assets/trashCan.png'
 import setNewMessage from './SetNewMessage'
 
 class Form extends Component {
@@ -82,16 +82,17 @@ class Form extends Component {
 
         return(
             <form action="">
-                <img src={trashCan} alt="test"/>
+                <img src="" alt=""/>
                 <label htmlFor="selectItem">I want to recycle:  </label>
                 <select name="wasteItem" id="selectItem" value={this.state.value} onChange={
                     this.handleChange}>
                     {/* when user changes value of the select field, run handleChange function which sets state.userChoice to select's value */}
                     <option value="metal lids">metal lids</option>
                     <option value="black plastic">black plastic</option>
-                    <option value="glass bottle">glass bottle</option>
+                    <option value="gift wrapping paper">gift wrapping paper</option>
                     <option value="paper takeout container">paper takeout container</option>
                     <option value="food scraps">food scraps</option>
+                    <option value="nail polish">nail polish</option>
                 </select>
                 
                 <button onClick={(e)=>{
@@ -100,7 +101,7 @@ class Form extends Component {
                     if (this.state.userChoice === ''){
 
                         this.setState({
-                        message: 'Please select an item from the list first'
+                        message1: 'Please select an item from the list first'
                         })
                         } 
                         else 

@@ -3,7 +3,6 @@ import firebase from './firebase';
 // import possibleCats from './Search'
 
 import Form from './Form'
-import trashCan from './assets/trashCan.png'
 // import removeDups from './removeDups'
 import './App.scss';
 //to refactor into components:
@@ -145,9 +144,9 @@ class App extends Component {
       <div>
         {/* {this.getGarbage()} */}
         <header>
-          <h1>Can-</h1>
-          <h3>This app will help you determine which items are recyclable in the Greater Toronto Area</h3>
-          <h3>To begin, select the item you'd like to recycle from the list below</h3>
+          <h1>Can-I-Recycle?</h1>
+          <h2>Find out what's recyclable in the GTA</h2>
+          <h2>To begin, select the item you'd like to recycle from the list below</h2>
         </header>
         <Form fullObject={this.state.fullObject}  userChoice={this.state.userChoice}  />
         {/* <h3>The userChoice is: {this.state.userChoice}</h3> */}
@@ -169,7 +168,6 @@ class App extends Component {
         </section>
         {/* <img src={this.state.image}  */}
         {/* alt={this.state.alt} */}
-        />
       </div>
     )
   }
