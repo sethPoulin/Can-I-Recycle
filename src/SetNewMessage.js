@@ -12,14 +12,29 @@ function setNewMessage(category){
 
     const garbageIndex = {
       Garbage:{
-        message: 'This item is garbage',
+        message1: 'Place item in your household garbage.',
         image: trashCan,
-        alt: 'an image of a trashcan'
-      }
+        alt: 'An image of a trashcan.'
+      },
+      
+      Oversize:{
+        message1: 'Items that would never fit in your Garbage Bin, when empty, are considered oversize and collected curbside.', 
+        message2: 'Please place this item 0.5 metre (2 feet) away from your Garbage Bin on your scheduled garbage collection day for free pick-up.',
+        image: trashCan,
+        alt: 'An image of a trashcan.'
+      },
+
+      GreenBin:{
+        message1: 'Place item in your green bin.',
+        image: trashCan,
+        alt: 'An image of a trashcan.'
+      },
+
+
     }
     console.log(garbageIndex.garbage)
 
-    const finalItem = garbageIndex[category]
+    const finalItem = garbageIndex[category.replace(/\s/g,'')];
     console.log(finalItem)
 
     return finalItem

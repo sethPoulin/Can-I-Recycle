@@ -7,7 +7,8 @@ class Form extends Component {
         super()
         this.state = {
             userChoice: '',
-            message: '',
+            message1: '',
+            message2: '',
             image: '',
             alt:''
         }
@@ -38,7 +39,7 @@ class Form extends Component {
 
     resetMessage = () => {
     this.setState({
-        message: ''
+        message1: ''
     })
     }
     
@@ -54,7 +55,8 @@ class Form extends Component {
         console.log(returnedRecycleMethod[0].category)
         //sets state.message to newMessageToPrint
         this.setState({
-          message: newMessageToPrint.message,
+          message1: newMessageToPrint.message1,
+          message2: newMessageToPrint.message2,
           image: newMessageToPrint.image,
           alt: newMessageToPrint.alt
         })
@@ -88,6 +90,8 @@ class Form extends Component {
                     <option value="metal lids">metal lids</option>
                     <option value="black plastic">black plastic</option>
                     <option value="glass bottle">glass bottle</option>
+                    <option value="paper takeout container">paper takeout container</option>
+                    <option value="food scraps">food scraps</option>
                 </select>
                 
                 <button onClick={(e)=>{
@@ -102,10 +106,10 @@ class Form extends Component {
                         else 
                         {
                         this.handleSubmit(this.state.userChoice)}
-                    }}
-                        >Check if it's recyclable!
-                        </button>
-                <h2>{this.state.message}</h2>
+                    }}>Check if it's recyclable!
+                 </button>
+                 <p>{this.state.message1}</p>
+                 <p>{this.state.message2}</p>
                 <img src={this.state.image} alt={this.state.alt}/>
             </form>
         )
