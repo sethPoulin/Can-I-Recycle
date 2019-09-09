@@ -63,20 +63,26 @@ class App extends Component {
   }
 
   
+  
+  getGarbage = (arr) => {
+    const allGarbage = []
+    arr.forEach(function(item){
+      let splitItems = item.keywords.split(',')
+      splitItems.forEach((item)=>{
+        allGarbage.push(item)
+      })
+    })
+    const arrayOfItemChoices = [];
+    allGarbage.forEach((item) => {
+      let object = {}
+      object.label = item;
+      arrayOfItemChoices.push(object)
+    })
+    return arrayOfItemChoices
+    
 
-  // getGarbage = (arr) => {
-  //   const allGarbage = []
-  //   arr.forEach(function(item){
-  //     let splitItems = item.keywords.split(',')
-  //     splitItems.forEach((item)=>{
-  //       allGarbage.push(item)
-  //     })
-     
-  //   })
-  //   return allGarbage
-
-  //   // return allgarbage once it's done 🤷‍♀️
-  // }
+    // return allgarbage once it's done 🤷‍♀️
+  }
 
         
   // checkCategories();
@@ -133,7 +139,7 @@ class App extends Component {
   render(){
     //Me: PUT CONDITIONAL IN YOUR RENDER.  IF X RETURN (STUFF) ELSE RETURN (OTHER STUFF)
     // if (this.state.fullObject) {
-    //   console.log(this.getGarbage(this.state.fullObject));
+      console.log(this.getGarbage(this.state.fullObject));
     // }
     
   //  console.log(this.state.fullObject)
@@ -147,8 +153,8 @@ class App extends Component {
           <h1>Can-I-Recycle?</h1>
           <h2>Find out what's recyclable in the GTA</h2>
           <h2>To begin, select the item you'd like to recycle from the list below</h2>
+          <Form fullObject={this.state.fullObject}  userChoice={this.state.userChoice} autocompleteItems={this.getGarbage(this.state.fullObject)}  />
         </header>
-        <Form fullObject={this.state.fullObject}  userChoice={this.state.userChoice}  />
         {/* <h3>The userChoice is: {this.state.userChoice}</h3> */}
         {/* <h3>The message is: {this.cleanMessage(this.state.message)}</h3> */}
         {/* <form action="">
@@ -163,9 +169,9 @@ class App extends Component {
           
           <button onClick={this.handleSubmit}>Check if it's recyclable!</button>
         </form> */}
-        <section className="message">
+        {/* <section className="message"> */}
           {/* <ul><li>{this.state.message}</li></ul> */}
-        </section>
+        {/* </section> */}
         {/* <img src={this.state.image}  */}
         {/* alt={this.state.alt} */}
       </div>

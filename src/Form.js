@@ -1,6 +1,7 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
 // import trashCan from './assets/trashCan.png'
-import setNewMessage from './SetNewMessage'
+import setNewMessage from './SetNewMessage';
+import Autocomplete from 'react-autocomplete';
 
 class Form extends Component {
     constructor(){
@@ -10,7 +11,8 @@ class Form extends Component {
             message1: '',
             message2: '',
             image: '',
-            alt:''
+            alt:'',
+            selected: ''
         }
     }
 
@@ -71,48 +73,73 @@ class Form extends Component {
       }
     
        //changes state.userChoice when user selects an item from drop down list
+    handleSelect = (val)=>{
+        this.setState({
+            userChoice:val
+        })
+    }
+
     handleChange = (event) => {
         this.setState({
-        userChoice: event.target.value,
-        message: ''
+        userChoice: event.target.value
+        // message1: ''
             })
         }
 
     render(){
 
         return(
-            <form action="">
-                <img src="" alt=""/>
-                <label htmlFor="selectItem">I want to recycle:  </label>
-                <select name="wasteItem" id="selectItem" value={this.state.value} onChange={
-                    this.handleChange}>
-                    {/* when user changes value of the select field, run handleChange function which sets state.userChoice to select's value */}
-                    <option value="metal lids">metal lids</option>
-                    <option value="black plastic">black plastic</option>
-                    <option value="gift wrapping paper">gift wrapping paper</option>
-                    <option value="paper takeout container">paper takeout container</option>
-                    <option value="food scraps">food scraps</option>
-                    <option value="nail polish">nail polish</option>
-                </select>
-                
-                <button onClick={(e)=>{
-                e.preventDefault(e) 
-                    
-                    if (this.state.userChoice === ''){
 
-                        this.setState({
-                        message1: 'Please select an item from the list first'
-                        })
-                        } 
-                        else 
-                        {
-                        this.handleSubmit(this.state.userChoice)}
-                    }}>Check if it's recyclable!
-                 </button>
-                 <p>{this.state.message1}</p>
-                 <p>{this.state.message2}</p>
-                <img src={this.state.image} alt={this.state.alt}/>
-            </form>
+            <div>
+                <form action="">
+                    <img src="" alt=""/>
+                    <label htmlFor="selectItem">I want to recycle:  </label>
+                    <Autocomplete
+                        getItemValue={(item) => item.label}
+                        items={this.props.autocompleteItems}
+                        shouldItemRender={(item, value) => item.label.toLowerCase().indexOf(value.toLowerCase()) > -1}
+                        renderItem={(item, isHighlighted) =>
+                            <div style={{ background: isHighlighted ? 'rgba(52, 73, 94,1.0)' : 'rgba(189, 195, 199,1.0)'}}>
+                            {item.label}
+                            </div>
+                        }
+                        value={this.state.userChoice}
+                        // onChange={e => this.setState({ userChoice: e.target.value })}
+                        onChange={this.handleChange}
+                        onSelect={this.handleSelect}
+                    />
+                    {/* <select name="wasteItem" id="selectItem" value={this.state.value} onChange={
+                        this.handleChange}> */}
+                        {/* when user changes value of the select field, run handleChange function which sets state.userChoice to select's value */}
+                        {/* <option value="metal lids">metal lids</option>
+                        <option value="black plastic">black plastic</option>
+                        <option value="gift wrapping paper">gift wrapping p</option>
+                        <option value="paper takeout container">paper takeout container</option>
+                        <option value="food scraps">food scraps</option>
+                        <option value="nail polish">nail polish</option>
+                    </select> */}
+                    
+                    <button onClick={(e)=>{
+                    e.preventDefault(e) 
+                        
+                        if (this.state.userChoice === ''){
+    
+                            this.setState({
+                            message1: 'Please select an item from the list first'
+                            })
+                            } 
+                            else 
+                            {
+                            this.handleSubmit(this.state.userChoice)}
+                        }}>Check if it's recyclable!
+                     </button>
+                </form>
+                <section>
+                     <p>{this.state.message1}</p>
+                     <p>{this.state.message2}</p>
+                    <img src={this.state.image} alt={this.state.alt}/>
+                </section>
+            </div>
         )
     }
 }    
