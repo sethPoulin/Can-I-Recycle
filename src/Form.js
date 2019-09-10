@@ -20,6 +20,10 @@ class Form extends Component {
         //runs checkMethod if userChoice isn't null
         this.checkRecMethod(userChoice)
     }
+
+    getKeywords = (arr) => {
+        return arr.map((obj)=>obj.label)
+    }
     
     checkRecMethod = (userChoice) => {
         const returnedRecycleMethod = 
@@ -58,9 +62,11 @@ class Form extends Component {
         }
 
     render(){
-
+        console.log(this.props.autocompleteItems);
+        console.log(this.state.userChoice);
+        console.log(this.getKeywords(this.props.autocompleteItems));
         return(
-
+            
             <div>
                 <form action="">
                     <h3>To begin, start typing the item you'd like to recycle in the field below:</h3>
@@ -88,7 +94,14 @@ class Form extends Component {
                             this.setState({
                                 message1: 'Please enter an item first.'
                                 })
-                            } else {
+                        } else if (!
+
+                            this.getKeywords(this.props.autocompleteItems).includes(this.state.userChoice)){
+                                this.setState({
+                                    message1: 'You must choose one of the items on the list.'
+                                })
+                            }
+                        else {
                             //otherwise run handleSubmit with userChoice
                             this.handleSubmit(this.state.userChoice)}
                         }}>Check if it's recyclable!

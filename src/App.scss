@@ -97,7 +97,7 @@ h3, p, input, label, button, .autocomplete {
 h3 {
   margin-bottom: 30px;
   line-height: 3.4rem;
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0,0.4);
   padding: 20px;
   
 }
@@ -195,7 +195,13 @@ button {
   text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
   font-weight: 700;
   padding: 10px 20px;
+
+  &:nth-child(2) {
+    margin-bottom: 70px;
+  }
 }
+
+
 
 .responseImage {
   padding-right: 30px;
