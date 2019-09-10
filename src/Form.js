@@ -70,7 +70,8 @@ class Form extends Component {
                         items={this.props.autocompleteItems}
                         shouldItemRender={(item, value) => item.label.toLowerCase().indexOf(value.toLowerCase()) > -1}
                         renderItem={(item, isHighlighted) =>
-                            <div className="autocomplete" style={{ background: isHighlighted ? 'rgba(52, 73, 94,1.0)' : 'rgba(141, 148, 152,1.0)'}}>
+                            <div className="autocomplete" 
+                            style={{ background: isHighlighted ? 'rgba(52, 73, 94,1.0)' : 'rgba(141, 148, 152,1.0)'}}>
                             {item.label}
                             </div>
                         }

@@ -36,6 +36,8 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 80%;
+  margin: 0 auto;
 }
 
 h1, h2 {
@@ -50,12 +52,34 @@ h1 {
   // margin-top: 100px;
   padding: 30px;
   font-size: 7rem;
+
+  @media(max-width: 800px){
+    font-size: 5.5rem;
+  }
+
+  @media(max-width: 664px){
+    font-size: 5rem;
+  }
+
+  @media(max-width: 420px){
+    font-size: 4rem;
+    padding: 20px;
+  }
   
 }
 
 h2 {
   font-size: 4rem;
   padding: 40px;
+  line-height: 5rem;
+  @media(max-width: 704px){
+    font-size: 3rem;
+    line-height: 4rem;
+  }
+  @media(max-width: 575px){
+    font-size: 2.5rem;
+    line-height: 3rem;
+  }
 }
 
 h3, p, input, label, button, .autocomplete {
@@ -63,14 +87,19 @@ h3, p, input, label, button, .autocomplete {
   font-size: 2.5rem;
   text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
   letter-spacing: 0.1rem;
+
+  @media(max-width: 452px){
+    font-size: 2rem;
+    line-height: 3rem;
+  }
 }
 
 h3 {
-  padding-bottom: 30px;
-}
-
-p, input, .autocomplete {
-  font-size: 2.5rem;
+  margin-bottom: 30px;
+  line-height: 3.4rem;
+  background-color: rgba(0,0,0,0.5);
+  padding: 20px;
+  
 }
 
 p {
@@ -79,6 +108,13 @@ p {
 
 header, form, footer {
   text-align: center;
+}
+
+input, button {
+  border: 2px solid transparent;
+  &:focus {
+    border: 2px solid $pomegranate;
+  }
 }
 
 //HEADER STYLES
@@ -94,28 +130,35 @@ header {
 
 //FORM STYLES
 
+label, button, input {
+
+  @media (max-width: 1150px){
+    display:block;
+  }
+}
+
 button, input {
   outline: none;
-  border: none;
   text-shadow: none;
   padding: 10px;
   font-weight: 700;
+  @media (max-width: 1150px){
+    width: 100%;
+  }
 }
 
 label {
   color:$darkgrey;
   background-color: $green;
+  border: 2px solid $green;
   text-shadow: none;
   padding: 10px;
   padding-left: 15px;
+  font-weight: 700;
 }
 
 button {
   padding: 10px 15px;
-}
-
-label {
-  font-weight: 700;
 }
 
 .autocomplete {
@@ -183,6 +226,7 @@ footer {
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
+  z-index: 20;
 }
 
 
