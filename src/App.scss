@@ -1,37 +1,239 @@
-.App {
-  text-align: center;
-}
+@import './partials/setup';
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
+//VARIABLES
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+$red: rgb(159, 29, 14);
+$pomegranate: rgba(192, 57, 43,1.0);
+$lightgrey: rgba(236, 240, 241,1.0);
+$mediumgrey:rgba(189, 195, 199,1.0);
+$darkergrey:rgba(141, 148, 152,1.0);
+$darkbluegrey: rgba(52, 73, 94,1.0);
+$darkgrey: rgba(45, 52, 54,1.0);
+$mint: rgba(0, 184, 148,0.5);
+$green: rgba(180, 205, 19, 0.831);
 
-.App-link {
-  color: #61dafb;
-}
+$basic: 'karla',sans-serif;
+$header: 'raleway',serif;
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+//GENERAL STYLES
+
+html {
+  font-size: 62.5%;
+  background: white;
 }
 
 body {
-  background-color: rgb(163, 197, 249);
+  width: 100%;
+  max-width:1280px;
+  margin: 0 auto;
 }
+
+img {
+  width: 100%;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+}
+
+h1, h2 {
+  font-family: $header;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+  letter-spacing: 0.3rem;
+}
+
+h1 {
+  border: 8px solid $green;
+  // background: $green;
+  // margin-top: 100px;
+  padding: 30px;
+  font-size: 7rem;
+
+  @media(max-width: 800px){
+    font-size: 5.5rem;
+  }
+
+  @media(max-width: 664px){
+    font-size: 5rem;
+  }
+
+  @media(max-width: 420px){
+    font-size: 4rem;
+    padding: 20px;
+  }
+  
+}
+
+h2 {
+  font-size: 4rem;
+  padding: 40px;
+  line-height: 5rem;
+  @media(max-width: 704px){
+    font-size: 3rem;
+    line-height: 4rem;
+  }
+  @media(max-width: 575px){
+    font-size: 2.5rem;
+    line-height: 3rem;
+  }
+}
+
+h3, p, input, label, button, .autocomplete {
+  font-family: $basic;
+  font-size: 2.5rem;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+  letter-spacing: 0.1rem;
+
+  @media(max-width: 452px){
+    font-size: 2rem;
+    line-height: 3rem;
+  }
+}
+
+h3 {
+  margin-bottom: 30px;
+  line-height: 3.4rem;
+  background-color: rgba(0,0,0,0.4);
+  padding: 20px;
+  
+}
+
+p {
+  line-height: 3.4rem;
+}
+
+header, form, footer {
+  text-align: center;
+}
+
+input, button {
+  border: 2px solid transparent;
+  &:focus {
+    border: 2px solid $pomegranate;
+  }
+}
+
+//HEADER STYLES
+
+header {
+  padding-top: 7vh;
+  background-color: $pomegranate;
+  min-height:100vh;
+  background-image: url(assets/michalParzuchowskiGrass.jpg);
+  background-size: cover;
+  color: white;
+}
+
+//FORM STYLES
+
+label, button, input {
+
+  @media (max-width: 1150px){
+    display:block;
+  }
+}
+
+button, input {
+  outline: none;
+  text-shadow: none;
+  padding: 10px;
+  font-weight: 700;
+  @media (max-width: 1150px){
+    width: 100%;
+  }
+}
+
+label {
+  color:$darkgrey;
+  background-color: $green;
+  border: 2px solid $green;
+  text-shadow: none;
+  padding: 10px;
+  padding-left: 15px;
+  font-weight: 700;
+}
+
+button {
+  padding: 10px 15px;
+}
+
+.autocomplete {
+  padding: 4px 0;
+  text-shadow: none;
+  color: $darkgrey;
+  font-weight: 700;
+}
+
+.formEntry {
+  background-color: $green;
+  padding: 30px;
+}
+
+.response {
+  margin-top: 10px;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: row-reverse;
+  width: 80%;
+  padding: 15px;
+  margin: 15px auto;
+  position: relative;
+  right: unset;
+  text-align: left;
+}
+
+.response .offScreen {
+  right: unset;
+}
+
+.response p {
+  color: $lightgrey;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+  font-weight: 700;
+  padding: 10px 20px;
+
+  &:nth-child(2) {
+    margin-bottom: 70px;
+  }
+}
+
+
+
+.responseImage {
+  padding-right: 30px;
+}
+
+.response img {
+  height: 120px;
+}
+
+form {
+  position: relative;
+  z-index: 10;
+}
+
+//FOOTER STYLES
+
+footer p {
+  font-size: 1.8rem;
+  text-shadow: none;
+  padding: 0;
+  color: $lightgrey;
+}
+
+footer {
+  background-color: black;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  z-index: 20;
+}
+
+
+
