@@ -1,16 +1,10 @@
 import React, {Component} from 'react';
 import firebase from './firebase';
-// import possibleCats from './Search'
 
 import Form from './Form'
 // import removeDups from './removeDups'
 import './App.scss';
-//to refactor into components:
-//1. within the render of the main App, decide which elements are simply rendering something to the page and which are actually running functions.  The ones running functions are the ones that could be broken out into child components.
-//2.  if a child component needs to trigger a change in parent's state, put the function that changes the state in the PARENT and pass it to the child as a prop.  The child component will trigger the PARENT to run the function with an argument that the child supplies, and the PARENT will then be able to update its own state because it's the one running the function.  
-// Say the component is called SearchBar.  In your App's render you would have <Searchbar handleClick={this.handleClick}/> and as part of the component Searchbar's render you would have, say <button onClick={this.props.handleClick(this.state.someKey)}></button> This will call the function handleClick IN THE PARENT, using this.state.someKey (this refers to the CHILD component's state!) passed in as an argument.  
-//See this reference on stack overflow: https://stackoverflow.com/questions/48407785/react-pass-function-to-child-component
-//Note that when we write <Searchbar handleClick={this.handleClick}/> we are passing the function via props to the entire component.  The handleClick function can then be called from anywhere in the Searchbar component's render.
+
 
 
 
@@ -150,10 +144,11 @@ class App extends Component {
       <div>
         {/* {this.getGarbage()} */}
         <header>
-          <h1>Can-I-Recycle?</h1>
-          <h2>Find out what's recyclable in the GTA</h2>
-          <h2>To begin, select the item you'd like to recycle from the list below</h2>
-          <Form fullObject={this.state.fullObject}  userChoice={this.state.userChoice} autocompleteItems={this.getGarbage(this.state.fullObject)}  />
+          <div className="wrapper">
+            <h1>Can-I-Recycle?</h1>
+            <h2>Find out what's recyclable in the GTA</h2>
+            <Form fullObject={this.state.fullObject}  userChoice={this.state.userChoice} autocompleteItems={this.getGarbage(this.state.fullObject)}  />
+          </div>
         </header>
         {/* <h3>The userChoice is: {this.state.userChoice}</h3> */}
         {/* <h3>The message is: {this.cleanMessage(this.state.message)}</h3> */}
@@ -174,6 +169,9 @@ class App extends Component {
         {/* </section> */}
         {/* <img src={this.state.image}  */}
         {/* alt={this.state.alt} */}
+        <footer>
+          <p>Copyright © Seth Poulin 2019</p>
+        </footer>  
       </div>
     )
   }

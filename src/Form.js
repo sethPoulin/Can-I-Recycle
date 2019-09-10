@@ -14,6 +14,7 @@ class Form extends Component {
             alt:'',
             selected: ''
         }
+
     }
 
     //runs checkMethod if userChoice isn't null
@@ -81,8 +82,9 @@ class Form extends Component {
 
     handleChange = (event) => {
         this.setState({
-        userChoice: event.target.value
-        // message1: ''
+        userChoice: event.target.value,
+        message1: '',
+        message2: ''
             })
         }
 
@@ -92,14 +94,14 @@ class Form extends Component {
 
             <div>
                 <form action="">
-                    <img src="" alt=""/>
+                    <h3>To begin, select the item you'd like to recycle from the list below:</h3>
                     <label htmlFor="selectItem">I want to recycle:  </label>
                     <Autocomplete
                         getItemValue={(item) => item.label}
                         items={this.props.autocompleteItems}
                         shouldItemRender={(item, value) => item.label.toLowerCase().indexOf(value.toLowerCase()) > -1}
                         renderItem={(item, isHighlighted) =>
-                            <div style={{ background: isHighlighted ? 'rgba(52, 73, 94,1.0)' : 'rgba(189, 195, 199,1.0)'}}>
+                            <div className="autocomplete" style={{ background: isHighlighted ? 'rgba(52, 73, 94,1.0)' : 'rgba(141, 148, 152,1.0)'}}>
                             {item.label}
                             </div>
                         }
@@ -134,10 +136,14 @@ class Form extends Component {
                         }}>Check if it's recyclable!
                      </button>
                 </form>
-                <section>
-                     <p>{this.state.message1}</p>
-                     <p>{this.state.message2}</p>
-                    <img src={this.state.image} alt={this.state.alt}/>
+                <section className="response">
+                     <div className="responseCopy">
+                         <p>{this.state.message1}</p>
+                         <p>{this.state.message2}</p>
+                     </div>
+                    <div className="responseImage">
+                        <img src={this.state.image} alt={this.state.alt}/>
+                    </div>
                 </section>
             </div>
         )

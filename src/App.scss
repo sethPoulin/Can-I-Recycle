@@ -1,40 +1,193 @@
+@import './partials/setup';
+
+
+$red: rgb(159, 29, 14);
 $pomegranate: rgba(192, 57, 43,1.0);
 $lightgrey: rgba(236, 240, 241,1.0);
 $mediumgrey:rgba(189, 195, 199,1.0);
+$darkergrey:rgba(141, 148, 152,1.0);
 $darkbluegrey: rgba(52, 73, 94,1.0);
 $darkgrey: rgba(45, 52, 54,1.0);
-$mint: rgba(0, 184, 148,1.0);
+$mint: rgba(0, 184, 148,0.5);
+$green: rgba(180, 205, 19, 0.831);
+
+$basic: 'karla',sans-serif;
+$header: 'raleway',serif;
+
+html {
+  font-size: 62.5%;
+  background: white;
+}
+
+body {
+  width: 100%;
+  max-width:1280px;
+  margin: 0 auto;
+}
+
+img {
+  width: 100%;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1, h2 {
+  font-family: $header;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+  letter-spacing: 0.3rem;
+}
+
+h1 {
+  border: 8px solid $green;
+  // background: $green;
+  // margin-top: 100px;
+  padding: 30px;
+  font-size: 7rem;
+  
+}
+
+h2 {
+  font-size: 4rem;
+  padding: 40px;
+}
+
+h3, p, input, label, button, .autocomplete {
+  font-family: $basic;
+  font-size: 2.5rem;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+  letter-spacing: 0.1rem;
+}
+
+h3 {
+  padding-bottom: 30px;
+}
+
+
+
+p, input, .autocomplete {
+  font-size: 2.5rem;
+}
+
+p {
+  line-height: 3.4rem;
+}
+
+button, input {
+  outline: none;
+  border: none;
+  text-shadow: none;
+  padding: 10px;
+  font-weight: 700;
+}
+
+
+label {
+  color:$darkgrey;
+  background-color: $green;
+  text-shadow: none;
+  padding: 10px;
+  padding-left: 15px;
+}
+
+button {
+  padding: 10px 15px;
+}
+
+label {
+  font-weight: 700;
+}
+
 
 header {
+  padding-top: 7vh;
   background-color: $pomegranate;
-  height:90vh;
+  height:100vh;
   min-height: 600px;
-  background-image: url(assets/gabePangilinanGreenTree.jpg);
+  background-image: url(assets/michalParzuchowskiGrass.jpg);
   background-size: cover;
-  background-repeat: no-repeat;
+  // background-repeat: no-repeat;
+  // background-position-y: -500px;
   color: white;
+
+}
+
+.autocomplete {
+  padding: 4px 0;
+  text-shadow: none;
+  color: $darkgrey;
+  font-weight: 700;
+}
+
+
+.formEntry {
+  background-color: $green;
+  padding: 30px;
+  
+}
+
+.response {
+  margin-top: 10px;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: row-reverse;
+  // background-color: $lightgrey;
+  width: 80%;
+  padding: 15px;
+  margin: 15px auto;
+  // height:100px;
+  position: relative;
+  right: unset;
+  text-align: left;
+}
+
+.response .offScreen {
+  right: unset;
+}
+
+
+.response p {
+  // background: $lightgrey;
+  color: $lightgrey;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+  font-weight: 700;
+  padding: 10px 20px;
+
+}
+
+.responseImage {
+  padding-right: 30px;
+}
+
+.response img {
+  height: 120px;
+
+}
+
+footer p {
+  font-size: 1.8rem;
+  text-shadow: none;
+  padding: 0;
+  color: $lightgrey;
+  background-color: black;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
 
 
 
-header, form {
+
+
+header, form, footer {
 
   text-align: center;
 }
 
 
-
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-body {
-  background-color: rgb(163, 197, 249);
-}
