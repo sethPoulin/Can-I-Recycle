@@ -176,14 +176,14 @@ button {
 .response {
   margin-top: 10px;
   padding-top: 10px;
-  display: flex;
-  flex-direction: row-reverse;
+  // display: flex;
+  // flex-direction: row-reverse;
   width: 80%;
   padding: 15px;
   margin: 15px auto;
   position: relative;
   right: unset;
-  text-align: left;
+  // text-align: left;
 }
 
 .response .offScreen {
@@ -195,6 +195,7 @@ button {
   text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
   font-weight: 700;
   padding: 10px 20px;
+  background-color: rgba(0,0,0,0.4);
 
   &:nth-child(2) {
     margin-bottom: 70px;

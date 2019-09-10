@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import setNewMessage from './SetNewMessage';
 import Autocomplete from 'react-autocomplete';
+import he from 'he';
 
 class Form extends Component {
     constructor(){
@@ -21,8 +21,17 @@ class Form extends Component {
         this.checkRecMethod(userChoice)
     }
 
+    //gets keywords out of the fullObject
     getKeywords = (arr) => {
         return arr.map((obj)=>obj.label)
+    }
+
+    //removes HTML character encoding from returned message
+    removeHtml = (copy) => {
+        const div = document.createElement("div");
+        div.innerHTML = copy;
+        const text = div.textContent || div.innerText || "";
+        return text;
     }
     
     checkRecMethod = (userChoice) => {
@@ -31,16 +40,22 @@ class Form extends Component {
             this.props.fullObject.filter((garbageItem)=>{
             return garbageItem.keywords.includes(userChoice)
             })
+        console.log(he.decode(returnedRecycleMethod[0].body))
+
+        
+        // const newMessageToPrint = removeHtml(he.decode(returnedRecycleMethod[0].body))
+
+        const newMessageToPrint = this.removeHtml(he.decode(returnedRecycleMethod[0].body))
 
         //runs setNewMessage to determine which message to print based on the value of the returned item's 'category' key.  Stores this in the variable newMessageToPrint.  NewMessageToPrint returns an object (created in the setNewMessage component) which contains values for all the properties that need to change in this component's state.
-        const newMessageToPrint = 
-        setNewMessage(returnedRecycleMethod[0].category)
+        // const newMessageToPrint = 
+        // setNewMessage(returnedRecycleMethod[0].category)
         //sets state.message to newMessageToPrint's properties
         this.setState({
-          message1: newMessageToPrint.message1,
-          message2: newMessageToPrint.message2,
-          image: newMessageToPrint.image,
-          alt: newMessageToPrint.alt
+          message1: newMessageToPrint,
+        //   message2: newMessageToPrint.message2,
+        //   image: newMessageToPrint.image,
+        //   alt: newMessageToPrint.alt
         })
       }
     
@@ -60,6 +75,11 @@ class Form extends Component {
         alt:''
             })
         }
+
+    scrollToElement = () => {
+        const section = document.getElementById('response');
+        section.scrollIntoView();
+    }
 
     render(){
         return(
@@ -101,17 +121,18 @@ class Form extends Component {
                         else {
                             //otherwise run handleSubmit with userChoice
                             this.handleSubmit(this.state.userChoice)}
+                        //scrolls to bottom of the page
+                        this.scrollToElement(
+                        );
                         }}>Check if it's recyclable!
+                        
                      </button>
                 </form>
                 <section className="response">
-                     <div className="responseCopy">
+                     <div className="responseCopy" id="response">
                          <p>{this.state.message1}</p>
                          <p>{this.state.message2}</p>
                      </div>
-                    <div className="responseImage">
-                        <img src={this.state.image} alt={this.state.alt}/>
-                    </div>
                 </section>
             </div>
         )
