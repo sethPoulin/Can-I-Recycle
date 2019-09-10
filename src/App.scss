@@ -1,5 +1,6 @@
 @import './partials/setup';
 
+//VARIABLES
 
 $red: rgb(159, 29, 14);
 $pomegranate: rgba(192, 57, 43,1.0);
@@ -13,6 +14,8 @@ $green: rgba(180, 205, 19, 0.831);
 
 $basic: 'karla',sans-serif;
 $header: 'raleway',serif;
+
+//GENERAL STYLES
 
 html {
   font-size: 62.5%;
@@ -66,8 +69,6 @@ h3 {
   padding-bottom: 30px;
 }
 
-
-
 p, input, .autocomplete {
   font-size: 2.5rem;
 }
@@ -76,6 +77,23 @@ p {
   line-height: 3.4rem;
 }
 
+header, form, footer {
+  text-align: center;
+}
+
+//HEADER STYLES
+
+header {
+  padding-top: 7vh;
+  background-color: $pomegranate;
+  min-height:100vh;
+  background-image: url(assets/michalParzuchowskiGrass.jpg);
+  background-size: cover;
+  color: white;
+}
+
+//FORM STYLES
+
 button, input {
   outline: none;
   border: none;
@@ -83,7 +101,6 @@ button, input {
   padding: 10px;
   font-weight: 700;
 }
-
 
 label {
   color:$darkgrey;
@@ -101,20 +118,6 @@ label {
   font-weight: 700;
 }
 
-
-header {
-  padding-top: 7vh;
-  background-color: $pomegranate;
-  height:100vh;
-  min-height: 600px;
-  background-image: url(assets/michalParzuchowskiGrass.jpg);
-  background-size: cover;
-  // background-repeat: no-repeat;
-  // background-position-y: -500px;
-  color: white;
-
-}
-
 .autocomplete {
   padding: 4px 0;
   text-shadow: none;
@@ -122,11 +125,9 @@ header {
   font-weight: 700;
 }
 
-
 .formEntry {
   background-color: $green;
   padding: 30px;
-  
 }
 
 .response {
@@ -134,11 +135,9 @@ header {
   padding-top: 10px;
   display: flex;
   flex-direction: row-reverse;
-  // background-color: $lightgrey;
   width: 80%;
   padding: 15px;
   margin: 15px auto;
-  // height:100px;
   position: relative;
   right: unset;
   text-align: left;
@@ -148,14 +147,11 @@ header {
   right: unset;
 }
 
-
 .response p {
-  // background: $lightgrey;
   color: $lightgrey;
   text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
   font-weight: 700;
   padding: 10px 20px;
-
 }
 
 .responseImage {
@@ -164,30 +160,30 @@ header {
 
 .response img {
   height: 120px;
-
 }
+
+form {
+  position: relative;
+  z-index: 10;
+}
+
+//FOOTER STYLES
 
 footer p {
   font-size: 1.8rem;
   text-shadow: none;
   padding: 0;
   color: $lightgrey;
+}
+
+footer {
   background-color: black;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
 }
 
-
-
-
-
-
-header, form, footer {
-
-  text-align: center;
-}
 
 
