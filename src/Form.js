@@ -62,9 +62,6 @@ class Form extends Component {
         }
 
     render(){
-        console.log(this.props.autocompleteItems);
-        console.log(this.state.userChoice);
-        console.log(this.getKeywords(this.props.autocompleteItems));
         return(
             
             <div>
