@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 import Autocomplete from 'react-autocomplete';
+import { Link, animateScroll as scroll } from "react-scroll";
 import he from 'he';
+
+
+
 
 class Form extends Component {
     constructor(){
@@ -39,24 +43,26 @@ class Form extends Component {
             //goes through the fullObject and filters out only the object whose 'keywords' key contains the userChoice
             this.props.fullObject.filter((garbageItem)=>{
             return garbageItem.keywords.includes(userChoice)
-            })
-        console.log(he.decode(returnedRecycleMethod[0].body))
+            });
 
-        
-        // const newMessageToPrint = removeHtml(he.decode(returnedRecycleMethod[0].body))
 
-        const newMessageToPrint = this.removeHtml(he.decode(returnedRecycleMethod[0].body))
+        const newMessageToPrint = this.removeHtml(he.decode(returnedRecycleMethod[0].body));
 
         //runs setNewMessage to determine which message to print based on the value of the returned item's 'category' key.  Stores this in the variable newMessageToPrint.  NewMessageToPrint returns an object (created in the setNewMessage component) which contains values for all the properties that need to change in this component's state.
-        // const newMessageToPrint = 
-        // setNewMessage(returnedRecycleMethod[0].category)
+
         //sets state.message to newMessageToPrint's properties
         this.setState({
           message1: newMessageToPrint,
-        //   message2: newMessageToPrint.message2,
-        //   image: newMessageToPrint.image,
-        //   alt: newMessageToPrint.alt
-        })
+        });
+        const Scroll = require('react-scroll');
+        const scroller = Scroll.scroller;
+        (scroller).scrollTo('bottom',{
+            smooth: 'easeOutSine',
+            duration: 1000,
+            offset: -130
+        });
+        // scroll.scrollToBottom();
+
       }
     
     //this functionality is specified by the autocomplete component's documentation
@@ -76,16 +82,19 @@ class Form extends Component {
             })
         }
 
-    scrollToElement = () => {
-        const section = document.getElementById('response');
-        section.scrollIntoView();
-    }
+    // scrollToElement = () => {
+    //     const section = document.getElementById('response');
+    //     section.scrollIntoView();
+    // }
 
     render(){
+        const Scroll = require('react-scroll')
+        const Element = Scroll.Element;
         return(
             
             <div>
                 <form action="">
+                    <Element name="bottom"></Element>
                     <h3>To begin, start typing the item you'd like to recycle in the field below:</h3>
                     <label htmlFor="selectItem">I want to recycle:  </label>
                     <Autocomplete
@@ -104,7 +113,7 @@ class Form extends Component {
                     />
                     
                     <button onClick={(e)=>{
-                    e.preventDefault(e) 
+                        e.preventDefault(e) 
                         //if the user has not made a selection
                         if (this.state.userChoice === ''){
                             //return an error message
@@ -122,16 +131,15 @@ class Form extends Component {
                             //otherwise run handleSubmit with userChoice
                             this.handleSubmit(this.state.userChoice)}
                         //scrolls to bottom of the page
-                        this.scrollToElement(
-                        );
-                        }}>Check if it's recyclable!
-                        
+                        // this.scrollToElement(
+                        // );
+                        }}>
+                        Check if it's recyclable!
                      </button>
                 </form>
                 <section className="response">
                      <div className="responseCopy" id="response">
-                         <p>{this.state.message1}</p>
-                         <p>{this.state.message2}</p>
+                         {this.state.message1 ? <p>{this.state.message1}</p> : null}
                      </div>
                 </section>
             </div>
