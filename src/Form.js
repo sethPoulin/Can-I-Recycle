@@ -13,8 +13,7 @@ class Form extends Component {
             userChoice: '',
             message1: '',
             message2: '',
-            image: '',
-            alt:'',
+            padding: false,
             selected: ''
         }
 
@@ -54,15 +53,6 @@ class Form extends Component {
         this.setState({
           message1: newMessageToPrint,
         });
-        const Scroll = require('react-scroll');
-        const scroller = Scroll.scroller;
-        (scroller).scrollTo('bottom',{
-            smooth: 'easeOutSine',
-            duration: 1000,
-            offset: -130
-        });
-        // scroll.scrollToBottom();
-
       }
     
     //this functionality is specified by the autocomplete component's documentation
@@ -77,10 +67,19 @@ class Form extends Component {
         userChoice: event.target.value,
         message1: '',
         message2: '',
-        image: '',
-        alt:''
-            })
-        }
+        padding: true,
+            });
+
+        const Scroll = require('react-scroll');
+        const scroller = Scroll.scroller;
+        (scroller).scrollTo('bottom',{
+            smooth: 'easeOutSine',
+            duration: 1000,
+            offset: -130
+        });
+    }
+    
+    
 
     // scrollToElement = () => {
     //     const section = document.getElementById('response');
@@ -138,6 +137,7 @@ class Form extends Component {
                      </button>
                 </form>
                 <section className="response">
+                {this.state.padding ? <div></div> : null}
                      <div className="responseCopy" id="response">
                          {this.state.message1 ? <p>{this.state.message1}</p> : null}
                      </div>
