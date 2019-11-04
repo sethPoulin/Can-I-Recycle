@@ -13,7 +13,7 @@ class Form extends Component {
             userChoice: '',
             message1: '',
             message2: '',
-            padding: false,
+            // padding: false,
             selected: ''
         }
 
@@ -53,6 +53,14 @@ class Form extends Component {
         this.setState({
           message1: newMessageToPrint,
         });
+
+        const Scroll = require('react-scroll');
+        const scroller = Scroll.scroller;
+        (scroller).scrollTo('bottom',{
+            smooth: 'easeIn',
+            duration: 700,
+            offset: 200
+        });
       }
     
     //this functionality is specified by the autocomplete component's documentation
@@ -67,16 +75,10 @@ class Form extends Component {
         userChoice: event.target.value,
         message1: '',
         message2: '',
-        padding: true,
+        // padding: true,
             });
 
-        const Scroll = require('react-scroll');
-        const scroller = Scroll.scroller;
-        (scroller).scrollTo('bottom',{
-            smooth: 'easeOutSine',
-            duration: 1000,
-            offset: -130
-        });
+        
     }
     
     
@@ -93,55 +95,58 @@ class Form extends Component {
             
             <div>
                 <form action="">
-                    <Element name="bottom"></Element>
-                    <h3>To begin, start typing the item you'd like to recycle in the field below:</h3>
-                    <label htmlFor="selectItem">I want to recycle:  </label>
-                    <Autocomplete
-                        getItemValue={(item) => item.label}
-                        items={this.props.autocompleteItems}
-                        shouldItemRender={(item, value) => item.label.toLowerCase().indexOf(value.toLowerCase()) > -1}
-                        renderItem={(item, isHighlighted) =>
-                            <div className="autocomplete" 
-                            style={{ background: isHighlighted ? 'rgba(52, 73, 94,1.0)' : 'rgba(141, 148, 152,1.0)'}}>
-                            {item.label}
-                            </div>
-                        }
-                        value={this.state.userChoice}
-                        onChange={this.handleChange}
-                        onSelect={this.handleSelect}
-                    />
-                    
-                    <button onClick={(e)=>{
-                        e.preventDefault(e) 
-                        //if the user has not made a selection
-                        if (this.state.userChoice === ''){
-                            //return an error message
-                            this.setState({
-                                message1: 'Please enter an item first.'
-                                })
-                        } else if (!
-
-                            this.getKeywords(this.props.autocompleteItems).includes(this.state.userChoice)){
-                                this.setState({
-                                    message1: 'You must choose one of the items on the list.'
-                                })
+                    <h3>Start typing the item you'd like to recycle in the field below:</h3>
+                    <div className="formAndButton">
+                        <label htmlFor="selectItem">I want to recycle:  </label>
+                        <Autocomplete
+                            getItemValue={(item) => item.label}
+                            items={this.props.autocompleteItems}
+                            shouldItemRender={(item, value) => item.label.toLowerCase().indexOf(value.toLowerCase()) > -1}
+                            renderItem={(item, isHighlighted) =>
+                                <div className="autocomplete" 
+                                style={{ background: isHighlighted ? 'rgba(52, 73, 94,1.0)' : 'rgba(141, 148, 152,1.0)'}}>
+                                {item.label}
+                                </div>
                             }
-                        else {
-                            //otherwise run handleSubmit with userChoice
-                            this.handleSubmit(this.state.userChoice)}
-                        //scrolls to bottom of the page
-                        // this.scrollToElement(
-                        // );
-                        }}>
-                        Check if it's recyclable!
-                     </button>
+                            value={this.state.userChoice}
+                            onChange={this.handleChange}
+                            onSelect={this.handleSelect}
+                        />
+                        
+                        <button onClick={(e)=>{
+                            e.preventDefault(e) 
+                            //if the user has not made a selection
+                            if (this.state.userChoice === ''){
+                                //return an error message
+                                this.setState({
+                                    message1: 'Please enter an item first.'
+                                    })
+                            } else if (!
+    
+                                this.getKeywords(this.props.autocompleteItems).includes(this.state.userChoice)){
+                                    this.setState({
+                                        message1: 'You must choose one of the items on the list.'
+                                    })
+                                }
+                            else {
+                                //otherwise run handleSubmit with userChoice
+                                this.handleSubmit(this.state.userChoice)}
+                            //scrolls to bottom of the page
+                            // this.scrollToElement(
+                            // );
+                            }}>
+                            Check if it's recyclable!
+                         </button>
+                    </div>
                 </form>
                 <section className="response">
-                {this.state.padding ? <div></div> : null}
+
+                {/* {this.state.padding ? <div></div> : null} */}
                      <div className="responseCopy" id="response">
-                         {this.state.message1 ? <p>{this.state.message1}</p> : null}
+                         {(this.state.message1)?<p>{this.state.message1}</p>:null}
                      </div>
                 </section>
+                <Element name="bottom"></Element>
             </div>
         )
     }

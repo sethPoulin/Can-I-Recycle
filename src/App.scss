@@ -95,10 +95,18 @@ h3, p, input, label, button, .autocomplete {
 }
 
 h3 {
+  color: black;
   margin-bottom: 30px;
   line-height: 3.4rem;
-  background-color: rgba(0,0,0,0.4);
+  font-weight: bold;
+  // background-color: rgba(0,0,0,0.4);
+  background-color: $green;
+  text-shadow: none;
   padding: 20px;
+
+  @media (max-width: 1150px){
+    margin-bottom: 20px;
+  }
   
 }
 
@@ -131,6 +139,8 @@ header {
 
 label, button, input {
 
+  flex-grow: 1;
+
   @media (max-width: 1150px){
     display:block;
   }
@@ -143,21 +153,48 @@ button, input {
   font-weight: 700;
   @media (max-width: 1150px){
     width: 100%;
+    // margin: 0 auto;
   }
 }
 
 label {
-  color:$darkgrey;
+  color:black;
   background-color: $green;
   border: 2px solid $green;
   text-shadow: none;
   padding: 10px;
   padding-left: 15px;
   font-weight: 700;
+  @media (max-width: 1150px){
+    width: 100%;
+  }
 }
 
 button {
   padding: 10px 15px;
+  background-color: $mediumgrey;
+  margin-left: 20px;
+
+  &:hover {
+    background-color: $green;
+  }
+ 
+  @media (max-width: 1150px){
+    margin-top: 20px;
+  }
+
+}
+
+.formAndButton {
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  justify-content: space-between;
+
+  @media(max-width: 1150px) {
+    flex-direction: column;
+    width: 100%;
+  }
 }
 
 .autocomplete {
@@ -165,6 +202,7 @@ button {
   text-shadow: none;
   color: $darkgrey;
   font-weight: 700;
+  // width: 100%;
 }
 
 .formEntry {
@@ -177,7 +215,7 @@ button {
   padding-top: 10px;
   // display: flex;
   // flex-direction: row-reverse;
-  width: 80%;
+  width: 90%;
   padding: 15px;
   margin: 15px auto;
   position: relative;
@@ -195,7 +233,7 @@ button {
   text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
   font-weight: 700;
   padding: 10px 20px;
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0,0,0,0.6);
   margin-bottom: 80px;
 }
 
