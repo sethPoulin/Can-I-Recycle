@@ -3,8 +3,6 @@ import Autocomplete from 'react-autocomplete';
 import he from 'he';
 
 
-
-
 class Form extends Component {
     constructor(){
         super()
@@ -12,10 +10,8 @@ class Form extends Component {
             userChoice: '',
             message1: '',
             message2: '',
-            // padding: false,
             selected: ''
         }
-
     }
 
     handleSubmit = (userChoice) => {
@@ -73,8 +69,7 @@ class Form extends Component {
         this.setState({
         userChoice: event.target.value,
         message1: '',
-        message2: '',
-        // padding: true,
+        message2: ''
             });   
     }
 
@@ -84,14 +79,7 @@ class Form extends Component {
             message1:''
         })
     }
-    
-    
-
-    // scrollToElement = () => {
-    //     const section = document.getElementById('response');
-    //     section.scrollIntoView();
-    // }
-
+ 
     render(){
         const Scroll = require('react-scroll')
         const Element = Scroll.Element;
@@ -135,9 +123,6 @@ class Form extends Component {
                             else {
                                 //otherwise run handleSubmit with userChoice
                                 this.handleSubmit(this.state.userChoice)}
-                            //scrolls to bottom of the page
-                            // this.scrollToElement(
-                            // );
                             }}>
                             Check if it's recyclable!
                          </button>
@@ -145,7 +130,6 @@ class Form extends Component {
                 </form>
                 <section className="response">
 
-                {/* {this.state.padding ? <div></div> : null} */}
                      <div className="responseCopy" id="response">
                          {(this.state.message1)?
                          <p>{this.state.message1}</p>:null}
