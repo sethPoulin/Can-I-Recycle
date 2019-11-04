@@ -75,9 +75,14 @@ class Form extends Component {
         message1: '',
         message2: '',
         // padding: true,
-            });
+            });   
+    }
 
-        
+    resetPage = () => {
+        this.setState({
+            userChoice:'',
+            message1:''
+        })
     }
     
     
@@ -142,7 +147,13 @@ class Form extends Component {
 
                 {/* {this.state.padding ? <div></div> : null} */}
                      <div className="responseCopy" id="response">
-                         {(this.state.message1)?<p>{this.state.message1}</p>:null}
+                         {(this.state.message1)?
+                         <p>{this.state.message1}</p>:null}
+                         {(this.state.message1)?
+                         <button className="searchAgain" onClick={(e)=> {
+                             e.preventDefault();
+                             this.resetPage();
+                             }}>Search again</button>:null}
                      </div>
                 </section>
                 <Element name="bottom"></Element>

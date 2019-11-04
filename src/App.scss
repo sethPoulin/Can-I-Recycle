@@ -235,10 +235,8 @@ button {
   padding: 20px;
   // background-color: rgba(0,0,0,0.6);
   background-color: rgba(30, 55, 37, 0.797);;
-  margin-bottom: 80px;
+  margin-bottom: 40px;
 }
-
-
 
 .responseImage {
   padding-right: 30px;
@@ -246,6 +244,10 @@ button {
 
 .response img {
   height: 120px;
+}
+
+button.searchAgain {
+  margin-bottom: 60px;
 }
 
 form {
