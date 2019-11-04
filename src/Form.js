@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Autocomplete from 'react-autocomplete';
-import { Link, animateScroll as scroll } from "react-scroll";
 import he from 'he';
 
 

@@ -121,7 +121,7 @@ header, form, footer {
 input, button {
   border: 2px solid transparent;
   &:focus {
-    border: 2px solid $pomegranate;
+    border: 4px dashed $darkbluegrey;
   }
 }
 
@@ -230,10 +230,11 @@ button {
 
 .response p {
   color: $lightgrey;
-  text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+  // text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
   font-weight: 700;
-  padding: 10px 20px;
-  background-color: rgba(0,0,0,0.6);
+  padding: 20px;
+  // background-color: rgba(0,0,0,0.6);
+  background-color: rgba(30, 55, 37, 0.797);;
   margin-bottom: 80px;
 }
 
