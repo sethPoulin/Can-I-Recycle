@@ -259,7 +259,12 @@ button.searchAgain {
 
 form {
 	position: relative;
-	z-index: 10;
+	z-index: 2;
+}
+
+.modal {
+	background-color: darkgrey;
+	// z-index: 3;
 }
 
 //FOOTER STYLES
