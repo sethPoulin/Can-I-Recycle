@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Autocomplete from "react-autocomplete";
+import ResponseModal from "./ResponseModal";
 import he from "he";
 
 const Scroll = require("react-scroll");
@@ -10,7 +11,7 @@ class Form extends Component {
     super();
     this.state = {
       userChoice: "",
-      message1: ""
+      message: ""
     };
   }
 
@@ -37,7 +38,7 @@ class Form extends Component {
 
     //sets state.message to newMessageToPrint's properties
     this.setState({
-      message1: newMessageToPrint
+      message: newMessageToPrint
     });
 
     const Scroll = require("react-scroll");
@@ -63,14 +64,14 @@ class Form extends Component {
   handleChange = event => {
     this.setState({
       userChoice: event.target.value,
-      message1: ""
+      message: ""
     });
   };
 
   resetPage = () => {
     this.setState({
       userChoice: "",
-      message1: ""
+      message: ""
     });
   };
 
@@ -113,7 +114,7 @@ class Form extends Component {
                 if (this.state.userChoice === "") {
                   //return an error message
                   this.setState({
-                    message1: "Please enter an item first."
+                    message: "Please enter an item first."
                   });
                 } else if (
                   !this.getKeywords(this.props.autocompleteItems).includes(
@@ -121,7 +122,7 @@ class Form extends Component {
                   )
                 ) {
                   this.setState({
-                    message1: "You must choose one of the items on the list."
+                    message: "You must choose one of the items on the list."
                   });
                 } else {
                   //otherwise run handleSubmit with userChoice
@@ -134,20 +135,7 @@ class Form extends Component {
           </div>
         </form>
         <section className="response">
-          <div className="responseCopy" id="response">
-            {this.state.message1 ? <p>{this.state.message1}</p> : null}
-            {this.state.message1 ? (
-              <button
-                className="searchAgain"
-                onClick={e => {
-                  e.preventDefault();
-                  this.resetPage();
-                }}
-              >
-                Search again
-              </button>
-            ) : null}
-          </div>
+          <ResponseModal message={this.state.message} />
         </section>
         <Element name="bottom"></Element>
       </div>

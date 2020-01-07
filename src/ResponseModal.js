@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "react-modal";
 
-const ResponseModal = () => (
+const ResponseModal = props => (
   <Modal
     style={{
       overlay: {
@@ -27,10 +27,24 @@ const ResponseModal = () => (
         padding: "20px"
       }
     }}
-    isOpen={false}
+    isOpen={!!props.message}
     contentLabel="Response"
   >
     <h1>SOme text to be returned</h1>
+    <div className="responseCopy" id="response">
+      {props.message ? <p>{props.message}</p> : null}
+      {props.message ? (
+        <button
+          className="searchAgain"
+          onClick={e => {
+            e.preventDefault();
+            this.resetPage();
+          }}
+        >
+          Search again
+        </button>
+      ) : null}
+    </div>
   </Modal>
 );
 export default ResponseModal;

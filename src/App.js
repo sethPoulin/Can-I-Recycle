@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import firebase from "./firebase";
 import Form from "./Form";
-import ResponseModal from "./ResponseModal";
 import "./App.scss";
 
 class App extends Component {
@@ -64,7 +63,6 @@ class App extends Component {
             />
           </div>
         </header>
-        <ResponseModal />
         <footer>
           <p>Copyright © Seth Poulin 2019</p>
         </footer>
