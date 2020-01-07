@@ -31,20 +31,6 @@ const ResponseModal = props => (
     contentLabel="Response"
   >
     <h1>SOme text to be returned</h1>
-    <div className="responseCopy" id="response">
-      {props.message ? <p>{props.message}</p> : null}
-      {props.message ? (
-        <button
-          className="searchAgain"
-          onClick={e => {
-            e.preventDefault();
-            this.resetPage();
-          }}
-        >
-          Search again
-        </button>
-      ) : null}
-    </div>
   </Modal>
 );
 export default ResponseModal;
