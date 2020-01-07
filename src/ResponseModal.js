@@ -1,36 +1,35 @@
 import React from "react";
 import Modal from "react-modal";
 
+Modal.setAppElement("#root");
+
 const ResponseModal = props => (
   <Modal
     style={{
       overlay: {
         position: "fixed",
-        zIndex: 10,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        backgroundColor: "rgba(255, 255, 255, 0.75)"
-      },
-      content: {
-        position: "absolute",
-        top: "40px",
-        left: "40px",
-        right: "40px",
-        bottom: "40px",
-        border: "1px solid #ccc",
-        background: "#fff",
-        overflow: "auto",
-        WebkitOverflowScrolling: "touch",
-        borderRadius: "4px",
-        outline: "none",
-        padding: "20px"
+        zIndex: 10
       }
     }}
     isOpen={!!props.message}
     contentLabel="Response"
+    className="modal"
+    onRequestClose={props.resetPage}
   >
-    <h1>SOme text to be returned</h1>
+    <div id="response">
+      {props.message && <p className="modal__message">{props.message}</p>}
+      {props.message && (
+        <button
+          className="modal__button"
+          onClick={e => {
+            e.preventDefault();
+            props.resetPage();
+          }}
+        >
+          Search again
+        </button>
+      )}
+    </div>
   </Modal>
 );
 export default ResponseModal;
