@@ -2,21 +2,17 @@ import React, { Component } from "react";
 import Autocomplete from "react-autocomplete";
 import he from "he";
 
+const Scroll = require("react-scroll");
+const Element = Scroll.Element;
+
 class Form extends Component {
   constructor() {
     super();
     this.state = {
       userChoice: "",
-      message1: "",
-      message2: "",
-      selected: ""
+      message1: ""
     };
   }
-
-  handleSubmit = userChoice => {
-    //runs checkMethod if userChoice isn't null
-    this.checkRecMethod(userChoice);
-  };
 
   //gets keywords out of the fullObject
   getKeywords = arr => arr.map(obj => obj.label);
@@ -29,16 +25,15 @@ class Form extends Component {
     return text;
   };
 
-  checkRecMethod = userChoice => {
+  getRecMethod = userChoice => {
     const garbageObject =
       //goes through the fullObject and filters out only the object whose 'keywords' key contains the userChoice
       this.props.fullObject.filter(garbageItem => {
         return garbageItem.keywords.includes(userChoice);
       });
-    const recycleInstructions = garbageObject[0].body;
-    console.log(recycleInstructions);
+    const recycleInstructions = he.decode(garbageObject[0].body);
 
-    const newMessageToPrint = this.removeHtml(he.decode(recycleInstructions));
+    const newMessageToPrint = this.removeHtml(recycleInstructions);
 
     //sets state.message to newMessageToPrint's properties
     this.setState({
@@ -54,6 +49,10 @@ class Form extends Component {
     });
   };
 
+  handleSubmit = userChoice => {
+    //runs checkMethod if userChoice isn't null
+    this.getRecMethod(userChoice);
+  };
   //this functionality is specified by the autocomplete component's documentation
   handleSelect = val => {
     this.setState({
@@ -64,8 +63,7 @@ class Form extends Component {
   handleChange = event => {
     this.setState({
       userChoice: event.target.value,
-      message1: "",
-      message2: ""
+      message1: ""
     });
   };
 
@@ -77,8 +75,6 @@ class Form extends Component {
   };
 
   render() {
-    const Scroll = require("react-scroll");
-    const Element = Scroll.Element;
     return (
       <div>
         <form action="">
