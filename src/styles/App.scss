@@ -1,4 +1,5 @@
 @import "./partials/setup";
+@import "./partials/Modal";
 
 //VARIABLES
 
@@ -128,7 +129,7 @@ input,
 button {
 	border: 2px solid transparent;
 	&:focus {
-		border: 4px dashed $darkbluegrey;
+		outline: thin dotted $darkbluegrey;
 	}
 }
 
@@ -137,7 +138,7 @@ button {
 header {
 	padding-top: 7vh;
 	min-height: 100vh;
-	background-image: url(assets/michalParzuchowskiGrass.jpg);
+	background-image: url(../assets/michalParzuchowskiGrass.jpg);
 	background-size: cover;
 	color: white;
 }

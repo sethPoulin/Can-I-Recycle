@@ -1,0 +1,18 @@
+.modal {
+	max-width: 80%;
+	margin: auto;
+	margin-top: 10rem;
+	padding: 3rem;
+	outline: thin dotted;
+	box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.15);
+}
+
+.modal__message {
+	text-shadow: none;
+}
+
+.modal__button {
+	margin: 2rem auto;
+	width: auto;
+	display: block;
+}

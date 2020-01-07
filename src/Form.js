@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Autocomplete from "react-autocomplete";
-// import ResponseModal from "./ResponseModal";
+import ResponseModal from "./ResponseModal";
 import he from "he";
 
 const Scroll = require("react-scroll");
@@ -106,7 +106,6 @@ class Form extends Component {
               onChange={this.handleChange}
               onSelect={this.handleSelect}
             />
-
             <button
               onClick={e => {
                 e.preventDefault(e);
@@ -135,20 +134,10 @@ class Form extends Component {
           </div>
         </form>
         <section className="response">
-          <div className="responseCopy" id="response">
-            {this.state.message ? <p>{this.state.message}</p> : null}
-            {this.state.message ? (
-              <button
-                className="searchAgain"
-                onClick={e => {
-                  e.preventDefault();
-                  this.resetPage();
-                }}
-              >
-                Search again
-              </button>
-            ) : null}
-          </div>
+          <ResponseModal
+            message={this.state.message}
+            resetPage={this.resetPage}
+          />
         </section>
         <Element name="bottom"></Element>
       </div>

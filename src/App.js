@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import firebase from "./firebase";
 import Form from "./Form";
-import "./App.scss";
+import "./styles/App.scss";
 
 class App extends Component {
   constructor() {
@@ -51,7 +51,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div id="root">
         <header>
           <div className="wrapper">
             <h1>Can-I-Recycle?</h1>
