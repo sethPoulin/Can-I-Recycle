@@ -27,7 +27,7 @@ const ResponseModal = () => (
         padding: "20px"
       }
     }}
-    isOpen={true}
+    isOpen={false}
     contentLabel="Response"
   >
     <h1>SOme text to be returned</h1>

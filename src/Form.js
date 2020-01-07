@@ -30,17 +30,15 @@ class Form extends Component {
   };
 
   checkRecMethod = userChoice => {
-    const returnedRecycleMethod =
+    const garbageObject =
       //goes through the fullObject and filters out only the object whose 'keywords' key contains the userChoice
       this.props.fullObject.filter(garbageItem => {
         return garbageItem.keywords.includes(userChoice);
       });
+    const recycleInstructions = garbageObject[0].body;
+    console.log(recycleInstructions);
 
-    const newMessageToPrint = this.removeHtml(
-      he.decode(returnedRecycleMethod[0].body)
-    );
-
-    //runs setNewMessage to determine which message to print based on the value of the returned item's 'category' key.  Stores this in the variable newMessageToPrint.  NewMessageToPrint returns an object (created in the setNewMessage component) which contains values for all the properties that need to change in this component's state.
+    const newMessageToPrint = this.removeHtml(he.decode(recycleInstructions));
 
     //sets state.message to newMessageToPrint's properties
     this.setState({
