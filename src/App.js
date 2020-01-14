@@ -13,8 +13,7 @@ class App extends Component {
       fullObject: []
     };
   }
-
-  // lifecycle method for when the component is finshed mounting
+  
   componentDidMount() {
     // store a reference to firebase database in a variable
 

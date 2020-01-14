@@ -1,5 +1,5 @@
-@import "./partials/setup";
-@import "./partials/Modal";
+@import './partials/setup';
+@import './partials/Modal';
 
 //VARIABLES
 
@@ -13,8 +13,8 @@ $darkgrey: rgba(45, 52, 54, 1);
 $mint: rgba(0, 184, 148, 0.5);
 $green: rgba(180, 205, 19, 0.831);
 
-$basic: "karla", sans-serif;
-$header: "raleway", serif;
+$basic: 'karla', sans-serif;
+$header: 'raleway', serif;
 
 //GENERAL STYLES
 
@@ -137,7 +137,7 @@ button {
 
 header {
 	padding-top: 7vh;
-	min-height: 100vh;
+	min-height: 97vh;
 	background-image: url(../assets/michalParzuchowskiGrass.jpg);
 	background-size: cover;
 	color: white;
@@ -191,6 +191,7 @@ button {
 
 	@media (max-width: 1150px) {
 		margin-top: 20px;
+		margin-left: 0;
 	}
 }
 
@@ -275,11 +276,15 @@ footer p {
 	text-shadow: none;
 	padding: 0;
 	color: $lightgrey;
+
+	@media (max-width: 1150px) {
+		font-size: 1.4rem;
+	}
 }
 
 footer {
 	background-color: black;
-	position: fixed;
+	// position: fixed;
 	bottom: 0;
 	width: 100%;
 	max-width: 1280px;

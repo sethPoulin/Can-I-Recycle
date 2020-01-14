@@ -1,7 +1,9 @@
 .modal {
-	max-width: 80%;
+	max-width: 90%;
+	max-height: calc(100vh - 15rem);
+	overflow-y: auto;
 	margin: auto;
-	margin-top: 10rem;
+	margin-top: 5rem;
 	padding: 3rem;
 	outline: thin dotted;
 	box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.15);
@@ -9,10 +11,13 @@
 
 .modal__message {
 	text-shadow: none;
+	line-height: 2.5rem;
+	font-size: 1.6rem;
 }
 
 .modal__button {
 	margin: 2rem auto;
 	width: auto;
 	display: block;
+	font-size: 1.8rem;
 }
