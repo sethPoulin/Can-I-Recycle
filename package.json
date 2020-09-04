@@ -5,7 +5,7 @@
 	"dependencies": {
 		"firebase": "^6.5.0",
 		"he": "^1.2.0",
-		"node-sass": "^4.12.0",
+		"node-sass": "^4.13.1",
 		"react": "^16.9.0",
 		"react-autocomplete": "^1.8.1",
 		"react-dom": "^16.9.0",
